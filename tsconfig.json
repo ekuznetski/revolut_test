@@ -16,7 +16,7 @@
     "jsx": "react",
     "paths": {
       "@components": ["components"],
-      "@domain/*": ["domain/*"],
+      "@domain": ["domain"],
       "@store": ["store"],
     }
   },

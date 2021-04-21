@@ -6,6 +6,4 @@ export enum EResponseStatus {
 export enum EHttpMethod {
   get = "get",
   post = "post",
-  put = "put",
-  delete = "delete",
 }

@@ -1,4 +1,4 @@
-import { ENotificationType } from "@domain/enums";
+import { ENotificationType } from "@domain";
 
 export interface INotificationState {
   visible: boolean;
