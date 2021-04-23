@@ -1,5 +1,13 @@
 import React from "react";
+import { useExchangeType, useSelectedCurrency } from "@hooks";
 
 export function SubmitButton() {
-  return <button type="submit">Sell eur to btc</button>;
+  const selectedCurrency = useSelectedCurrency();
+  const { isSellExchangeType } = useExchangeType();
+  return (
+    <button type="submit">
+      {isSellExchangeType ? "Sell" : "Buy"} {selectedCurrency.base}{" "}
+      {isSellExchangeType ? "for" : "with"} {selectedCurrency.quote}
+    </button>
+  );
 }

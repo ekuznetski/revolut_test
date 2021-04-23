@@ -1,69 +1,35 @@
 import React, { useEffect } from "react";
 import { hot } from "react-hot-loader/root";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   AmountInput,
   ChangeDirectionButton,
+  CurrencySelector,
   EAmountInputType,
   Header,
+  Notifications,
   SubmitButton,
 } from "@components";
-import {
-  ActionCreators,
-  EActionTypes,
-  IAppStore,
-  IDataStore,
-  IStore,
-} from "@store";
+import { ActionCreators, EActionTypes } from "@store";
 import { ECurrency } from "@domain";
+import {
+  useAvailableBalance,
+  useRates,
+  useSelectedCurrency,
+  useUpdateRates,
+} from "@hooks";
 import "./styles.scss";
 
 function App() {
-  const { availableBalance, rates, selectedCurrency } = useSelector<
-    IStore,
-    {
-      availableBalance: IDataStore["availableBalance"];
-      rates: IDataStore["rates"];
-      selectedCurrency: IAppStore["selectedCurrency"];
-    }
-  >((state) => ({
-    availableBalance: state.data.availableBalance,
-    rates: state.data.rates,
-    selectedCurrency: state.app.selectedCurrency,
-  }));
+  const availableBalance = useAvailableBalance();
+  const rates = useRates();
+  const selectedCurrency = useSelectedCurrency();
   const dispatch = useDispatch();
+  useUpdateRates(600000);
 
   useEffect(() => {
-    // It's a wrong way. To improve performance better to do cache server on nodejs, and save all available currencies  with 10 mins interval, and when user change currency we will request rate for base currency via websocket
     dispatch(ActionCreators[EActionTypes.fetchAvailableBalance]());
-    const fetchRatesInterval = setInterval(() => {
-      if (selectedCurrency.base) {
-        const ratesParams = {
-          base: selectedCurrency.base,
-          symbols: Object.values(ECurrency).filter(
-            (e) => e !== selectedCurrency.base
-          ),
-        };
-        dispatch(ActionCreators[EActionTypes.fetchRates](ratesParams));
-      }
-    }, 600000);
-
-    return () => {
-      clearInterval(fetchRatesInterval);
-    };
   }, []);
-
-  useEffect(() => {
-    if (selectedCurrency.base) {
-      const ratesParams = {
-        base: selectedCurrency.base,
-        symbols: Object.values(ECurrency).filter(
-          (e) => e !== selectedCurrency.base
-        ),
-      };
-      dispatch(ActionCreators[EActionTypes.fetchRates](ratesParams));
-    }
-  }, [selectedCurrency.base]);
 
   useEffect(() => {
     if (availableBalance && !selectedCurrency.base) {
@@ -82,10 +48,12 @@ function App() {
 
   return rates ? (
     <>
+      <Notifications />
+      <CurrencySelector />
       <Header />
-      <AmountInput name={EAmountInputType.base} />
+      <AmountInput type={EAmountInputType.base} />
       <ChangeDirectionButton />
-      <AmountInput name={EAmountInputType.quote} />
+      <AmountInput type={EAmountInputType.quote} />
       <SubmitButton />
     </>
   ) : (
