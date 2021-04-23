@@ -13,7 +13,7 @@ export function dataStoreReducer(
 ): IDataStore {
   switch (action.type) {
     case EActionTypes.saveRates:
-      return { ...state, rates: action.payload };
+      return { ...state, rates: { ...state.rates, ...action.payload } };
 
     case EActionTypes.saveAvailableBalance:
       return {

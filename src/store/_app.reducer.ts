@@ -1,6 +1,6 @@
 import { Nullable } from "@domain";
 import { IAction, IAppStore } from "./store.interface";
-import { EActionTypes } from "./store.enum";
+import { EActionTypes, EExchangeType } from "./store.enum";
 
 export const initAppStore: Nullable<IAppStore> = {
   isCurrencySelectorActive: false,
@@ -10,11 +10,12 @@ export const initAppStore: Nullable<IAppStore> = {
     quote: null,
   },
   notification: {
-    visible: false,
+    isVisible: false,
     type: null,
     timeout: null,
     message: null,
   },
+  exchangeType: EExchangeType.sell,
 };
 
 export function appStoreReducer(
@@ -26,6 +27,41 @@ export function appStoreReducer(
       return {
         ...state,
         selectedCurrency: Object.assign(state.selectedCurrency, action.payload),
+      };
+    case EActionTypes.showCurrencySelector:
+      return {
+        ...state,
+        isCurrencySelectorActive: true,
+      };
+    case EActionTypes.hideCurrencySelector:
+      return {
+        ...state,
+        isCurrencySelectorActive: false,
+      };
+    case EActionTypes.showNotification:
+      return {
+        ...state,
+        notification: {
+          ...state.notification,
+          ...action.payload,
+          isVisible: true,
+        },
+      };
+    case EActionTypes.hideNotification:
+      return {
+        ...state,
+        notification: {
+          ...state.notification,
+          isVisible: false,
+        },
+      };
+    case EActionTypes.changeExchangeDirection:
+      return {
+        ...state,
+        exchangeType:
+          state.exchangeType === EExchangeType.sell
+            ? EExchangeType.buy
+            : EExchangeType.sell,
       };
     default:
       return state;

@@ -7,10 +7,16 @@ export enum EActionTypes {
   hideCurrencySelector = "[APP] Hide currency selector",
   showNotification = "[APP] Show notification",
   hideNotification = "[APP] Hide notification",
+  changeExchangeDirection = "[APP] Change exchange direction",
 
   // Data
   fetchRates = "[DATA] Fetch rates",
   saveRates = "[DATA] Save rates",
   fetchAvailableBalance = "[DATA] Fetch available balance",
   saveAvailableBalance = "[DATA] Save available balance",
+}
+
+export enum EExchangeType {
+  sell = "sell",
+  buy = "buy",
 }

@@ -1,14 +1,21 @@
 import { AnyFunction, INotificationState, ECurrency } from "@domain";
-import { EActionTypes } from "./store.enum";
+import { EActionTypes, EExchangeType } from "./store.enum";
 
 export interface ISelectedCurrency {
   base?: ECurrency;
   quote?: ECurrency;
 }
 
+export type IRates = {
+  [k in ECurrency]: {
+    prices: { [j in ECurrency]: number };
+    timestamp: number;
+  };
+};
+
 export interface IDataStore {
   availableBalance: { [k in ECurrency]: number };
-  rates: any;
+  rates: IRates;
 }
 
 export interface IAppStore {
@@ -16,6 +23,7 @@ export interface IAppStore {
   amount: number;
   selectedCurrency: ISelectedCurrency;
   notification: INotificationState;
+  exchangeType: EExchangeType;
 }
 
 export interface IStore {

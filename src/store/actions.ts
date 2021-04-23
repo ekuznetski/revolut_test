@@ -3,11 +3,9 @@ import { EActionTypes } from "./store.enum";
 import { IAction, IDataStore, ISelectedCurrency } from "./store.interface";
 
 export const ActionCreators = {
-  [EActionTypes.showCurrencySelector](payload: any): IAction {
-    // TODO types
+  [EActionTypes.showCurrencySelector](): IAction {
     return {
       type: EActionTypes.showCurrencySelector,
-      payload,
     };
   },
 
@@ -18,8 +16,8 @@ export const ActionCreators = {
   },
 
   [EActionTypes.showNotification](
-    payload: Omit<INotificationState, "visible">
-  ): IAction<Omit<INotificationState, "visible">> {
+    payload: Omit<INotificationState, "isVisible">
+  ): IAction<Omit<INotificationState, "isVisible">> {
     return {
       type: EActionTypes.showNotification,
       payload,
@@ -87,6 +85,12 @@ export const ActionCreators = {
     return {
       type: EActionTypes.saveAvailableBalance,
       payload,
+    };
+  },
+
+  [EActionTypes.changeExchangeDirection](): IAction {
+    return {
+      type: EActionTypes.changeExchangeDirection,
     };
   },
 };

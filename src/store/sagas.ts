@@ -2,7 +2,7 @@ import { call, put, takeEvery } from "redux-saga/effects";
 import { ENotificationType } from "@domain";
 import { EActionTypes } from "./store.enum";
 import { Requests } from "../services/api.service";
-import { IAction } from "./store.interface";
+import { IAction, IRates } from "./store.interface";
 import { ActionCreators } from "./actions";
 
 function* fetchRatesMiddleware({ payload }: IAction) {
@@ -11,7 +11,13 @@ function* fetchRatesMiddleware({ payload }: IAction) {
       Requests[EActionTypes.fetchRates],
       payload
     );
-    yield put(ActionCreators[EActionTypes.saveRates]({ base, rates }));
+    const preparedRates = {
+      [base]: {
+        timestamp: new Date().getTime(),
+        prices: rates,
+      },
+    };
+    yield put(ActionCreators[EActionTypes.saveRates](preparedRates as IRates));
   } catch (e) {
     yield put(
       ActionCreators[EActionTypes.showNotification]({
