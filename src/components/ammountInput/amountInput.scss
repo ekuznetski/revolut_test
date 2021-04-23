@@ -1,6 +1,17 @@
-.amount-input-wrapper{
+.amount-input-wrapper {
   display: flex;
-  .amount-input-data{
+  border: 1px solid black;
+  width: fit-content;
+  &:focus-within {
+    outline: -webkit-focus-ring-color auto 1px;
+  }
+  input {
+    padding: 10px;
+    border: none;
+    outline: none;
+    text-align: center;
+  }
+  .amount-input-data {
     display: flex;
     flex-direction: column;
     cursor: pointer;
