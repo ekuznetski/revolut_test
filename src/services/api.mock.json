@@ -1,0 +1,14 @@
+{
+ "availableBalance": {
+    "status": "success",
+    "response": {
+        "GBP": 20.00,
+        "USD": 50.00,
+        "EUR": 100.00
+   }
+ },
+ "submit": {
+     "status": "success",
+     "response": "___"
+ }
+}
