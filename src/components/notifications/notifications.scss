@@ -1,0 +1,14 @@
+.notification-wrapper{
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid black;
+  padding: 20px;
+  width: calc(100% - 40px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  margin: 20px;
+  box-shadow: 5px 5px 15px #00000026;
+}
