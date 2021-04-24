@@ -1,10 +1,14 @@
 import { Nullable } from "@domain";
+import { EAmountInputType } from "@components";
 import { IAction, IAppStore } from "./store.interface";
 import { EActionTypes, EExchangeType } from "./store.enum";
 
 export const initAppStore: Nullable<IAppStore> = {
   isCurrencySelectorActive: false,
-  amount: null,
+  amount: {
+    [EAmountInputType.base]: null,
+    [EAmountInputType.quote]: null,
+  },
   selectedCurrency: {
     base: null,
     quote: null,
@@ -23,6 +27,11 @@ export function appStoreReducer(
   action: IAction
 ): IAppStore {
   switch (action.type) {
+    case EActionTypes.saveAmount:
+      return {
+        ...state,
+        amount: Object.assign(state.amount, action.payload),
+      };
     case EActionTypes.saveSelectedCurrency:
       return {
         ...state,

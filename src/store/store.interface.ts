@@ -1,4 +1,5 @@
 import { AnyFunction, INotificationState, ECurrency } from "@domain";
+import { EAmountInputType } from "@components";
 import { EActionTypes, EExchangeType } from "./store.enum";
 
 export interface ISelectedCurrency {
@@ -20,7 +21,10 @@ export interface IDataStore {
 
 export interface IAppStore {
   isCurrencySelectorActive: boolean;
-  amount: number;
+  amount: {
+    [EAmountInputType.base]: number;
+    [EAmountInputType.quote]: number;
+  };
   selectedCurrency: ISelectedCurrency;
   notification: INotificationState;
   exchangeType: EExchangeType;

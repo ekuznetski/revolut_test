@@ -10,11 +10,24 @@
     border: none;
     outline: none;
     text-align: center;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    &[type="number"] {
+      -moz-appearance: textfield;
+    }
   }
   .amount-input-data {
     display: flex;
     flex-direction: column;
-    cursor: pointer;
-    user-select: none;
+    .currency {
+      user-select: none;
+      cursor: pointer;
+    }
+    .balance {
+      font-size: 12px;
+    }
   }
 }
