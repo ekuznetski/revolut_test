@@ -20,7 +20,10 @@ export interface IDataStore {
 }
 
 export interface IAppStore {
-  isCurrencySelectorActive: boolean;
+  currencySelector: {
+    isActive: boolean;
+    relatedInputType: EAmountInputType | null;
+  };
   amount: {
     [EAmountInputType.base]: string;
     [EAmountInputType.quote]: string;
@@ -36,7 +39,7 @@ export interface IStore {
   app: IAppStore;
 }
 
-export interface IAction<T = { [k: string]: any }> {
+export interface IAction<T = any> {
   type: EActionTypes;
   payload?: T;
   onSuccess?: AnyFunction;

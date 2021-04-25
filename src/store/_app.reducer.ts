@@ -4,7 +4,10 @@ import { IAction, IAppStore } from "./store.interface";
 import { EActionTypes, EExchangeType } from "./store.enum";
 
 export const initAppStore: Nullable<IAppStore> = {
-  isCurrencySelectorActive: false,
+  currencySelector: {
+    isActive: false,
+    relatedInputType: null,
+  },
   amount: {
     [EAmountInputType.base]: null,
     [EAmountInputType.quote]: null,
@@ -41,12 +44,18 @@ export function appStoreReducer(
     case EActionTypes.showCurrencySelector:
       return {
         ...state,
-        isCurrencySelectorActive: true,
+        currencySelector: {
+          isActive: true,
+          relatedInputType: action.payload,
+        },
       };
     case EActionTypes.hideCurrencySelector:
       return {
         ...state,
-        isCurrencySelectorActive: false,
+        currencySelector: {
+          isActive: false,
+          relatedInputType: null,
+        },
       };
     case EActionTypes.showNotification:
       return {

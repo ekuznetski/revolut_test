@@ -3,6 +3,7 @@ import {
   INotificationState,
   ISubmitRequest,
 } from "@domain";
+import { EAmountInputType } from "@components";
 import { EActionTypes } from "./store.enum";
 import {
   IAction,
@@ -12,9 +13,12 @@ import {
 } from "./store.interface";
 
 export const ActionCreators = {
-  [EActionTypes.showCurrencySelector](): IAction {
+  [EActionTypes.showCurrencySelector](
+    payload: EAmountInputType
+  ): IAction<EAmountInputType> {
     return {
       type: EActionTypes.showCurrencySelector,
+      payload,
     };
   },
 
