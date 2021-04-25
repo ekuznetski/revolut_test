@@ -51,10 +51,12 @@ function App() {
       <Notifications />
       <CurrencySelector />
       <Header />
-      <AmountInput type={EAmountInputType.base} />
-      <ChangeDirectionButton />
-      <AmountInput type={EAmountInputType.quote} />
-      <SubmitButton />
+      <form autoComplete="off">
+        <AmountInput type={EAmountInputType.base} />
+        <ChangeDirectionButton />
+        <AmountInput type={EAmountInputType.quote} />
+        <SubmitButton />
+      </form>
     </>
   ) : (
     <>Loading...</>
