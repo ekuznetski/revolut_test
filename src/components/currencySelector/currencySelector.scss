@@ -1,0 +1,23 @@
+.currency-selector-wrapper {
+  position: absolute;
+  .currency-selector-input-wrapper {
+    display: flex;
+    align-items: center;
+    .currency-selector-input {
+      position: relative;
+      .close {
+        right: 5px;
+        top: 5px;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        z-index: 10;
+        border-radius: 50%;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+}
