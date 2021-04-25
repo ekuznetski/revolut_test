@@ -31,8 +31,8 @@ export function AmountInput({ type }: { type: EAmountInputType }) {
       ? EAmountInputType.quote
       : EAmountInputType.base;
 
-  function openCurrencyInput() {
-    dispatch(ActionCreators[EActionTypes.showCurrencySelector]());
+  function showCurrencySelector() {
+    dispatch(ActionCreators[EActionTypes.showCurrencySelector](type));
   }
 
   function onChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
@@ -94,15 +94,20 @@ export function AmountInput({ type }: { type: EAmountInputType }) {
 
   return (
     <div className={`amount-input-wrapper ${isAmountInvalid ? "invalid" : ""}`}>
-      <div
-        className="amount-input-data"
-        role="button"
-        onClick={openCurrencyInput}
-      >
-        <div className="currency">{selectedCurrency[type]}</div>
+      <div className="amount-input-data">
+        <button
+          type="button"
+          className="currency"
+          onClick={showCurrencySelector}
+        >
+          {selectedCurrency[type]}
+        </button>
         <div className="balance">
           Balance:{" "}
-          {availableBalance[selectedCurrency[type] as ECurrency].toFixed(2)}
+          {(availableBalance[selectedCurrency[type] as ECurrency]
+            ? availableBalance[selectedCurrency[type] as ECurrency]
+            : 0
+          ).toFixed(2)}
         </div>
       </div>
       <div className="input-wrapper">
