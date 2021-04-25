@@ -2,14 +2,22 @@ export enum ECurrency {
   eur = "EUR",
   gbp = "GBP",
   usd = "USD",
-  hkd = "HKD",
-  cad = "CAD",
+  jpy = "JPY",
+  czk = "CZK",
 }
 
 export const ECurrencyName = {
   [ECurrency.eur]: "Euro",
   [ECurrency.gbp]: "British Pound",
   [ECurrency.usd]: "US Dollar",
-  [ECurrency.hkd]: "Hong Kong Dollar",
-  [ECurrency.cad]: "Canadian Dollar",
+  [ECurrency.jpy]: "Japanese Yen",
+  [ECurrency.czk]: "Czech Koruna",
+};
+
+export const ECurrencySymbol = {
+  [ECurrency.eur]: "€",
+  [ECurrency.gbp]: "£",
+  [ECurrency.usd]: "$",
+  [ECurrency.jpy]: "¥",
+  [ECurrency.czk]: "Kč",
 };
