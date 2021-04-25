@@ -1,5 +1,5 @@
 import { call, put, takeEvery } from "redux-saga/effects";
-import { ENotificationType } from "@domain";
+import { ENotificationType, EResponseStatus } from "@domain";
 import { EActionTypes } from "./store.enum";
 import { Requests } from "../services/api.service";
 import { IAction, IRates } from "./store.interface";
@@ -46,6 +46,33 @@ function* fetchAvailableBalanceMiddleware() {
   }
 }
 
+function* submitExchangeMiddleware(action: IAction) {
+  try {
+    const { status } = yield call(
+      Requests[EActionTypes.submitExchange],
+      action.payload
+    );
+    if (status === EResponseStatus.success) {
+      console.log("success submit");
+      yield put(ActionCreators[EActionTypes.fetchAvailableBalance]());
+    }
+    yield put(
+      ActionCreators[EActionTypes.showNotification]({
+        type: ENotificationType.success,
+        message: "success",
+      })
+    );
+  } catch (e) {
+    yield put(
+      ActionCreators[EActionTypes.showNotification]({
+        type: ENotificationType.failure,
+        message:
+          "OOPS... we have server error. If you hacker, pls stop hack us.",
+      })
+    );
+  }
+}
+
 export function* fetchRatesSaga() {
   yield takeEvery(EActionTypes.fetchRates, fetchRatesMiddleware);
 }
@@ -55,4 +82,8 @@ export function* fetchAvailableBalanceSaga() {
     EActionTypes.fetchAvailableBalance,
     fetchAvailableBalanceMiddleware
   );
+}
+
+export function* submitExchangeSaga() {
+  yield takeEvery(EActionTypes.submitExchange, submitExchangeMiddleware);
 }

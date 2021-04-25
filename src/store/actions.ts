@@ -1,4 +1,8 @@
-import { IFetchRatesRequest, INotificationState } from "@domain";
+import {
+  IFetchRatesRequest,
+  INotificationState,
+  ISubmitRequest,
+} from "@domain";
 import { EActionTypes } from "./store.enum";
 import {
   IAction,
@@ -65,8 +69,9 @@ export const ActionCreators = {
     };
   },
 
-  [EActionTypes.submitExchange](payload: any): IAction {
-    // TODO types
+  [EActionTypes.submitExchange](
+    payload: ISubmitRequest
+  ): IAction<ISubmitRequest> {
     return {
       type: EActionTypes.submitExchange,
       payload,

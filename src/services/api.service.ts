@@ -1,4 +1,4 @@
-import { EHttpMethod, EResponseStatus } from "@domain";
+import { EHttpMethod, EResponseStatus, ISubmitRequest } from "@domain";
 import axios from "axios";
 import { EActionTypes } from "../store/store.enum";
 import mockData from "./api.mock.json";
@@ -10,13 +10,23 @@ export function request<T extends { [K: string]: any }>(
   return async (data: T | null = null) => {
     try {
       if (path.includes("/availableBalance"))
-        return await new Promise<any>((r) => {
-          r(mockData.availableBalance);
-        });
-      if (path.includes("/submit"))
-        return await new Promise<any>((r) => {
-          r(mockData.submit);
-        });
+        return Object.assign(mockData.availableBalance);
+      if (path.includes("/submit")) {
+        // @ts-ignore
+        const {
+          amountBase,
+          amountQuote,
+          currencyBase,
+          currencyQuote,
+        }: ISubmitRequest = data;
+        // @ts-ignore
+        mockData.availableBalance.response[currencyBase] -= amountBase;
+        // @ts-ignore
+        mockData.availableBalance.response[currencyQuote] += parseFloat(
+          amountQuote
+        );
+        return mockData.submit;
+      }
       if (method === EHttpMethod.get) {
         let params;
         if (data) {
