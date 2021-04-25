@@ -22,9 +22,10 @@ export interface IDataStore {
 export interface IAppStore {
   isCurrencySelectorActive: boolean;
   amount: {
-    [EAmountInputType.base]: number;
-    [EAmountInputType.quote]: number;
+    [EAmountInputType.base]: string;
+    [EAmountInputType.quote]: string;
   };
+  isAmountInvalid: boolean;
   selectedCurrency: ISelectedCurrency;
   notification: INotificationState;
   exchangeType: EExchangeType;

@@ -8,6 +8,8 @@ export enum EActionTypes {
   showNotification = "[APP] Show notification",
   hideNotification = "[APP] Hide notification",
   changeExchangeDirection = "[APP] Change exchange direction",
+  setAmountInvalid = "[APP] Set amount invalid",
+  setAmountValid = "[APP] Set amount valid",
 
   // Data
   fetchRates = "[DATA] Fetch rates",

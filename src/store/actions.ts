@@ -1,6 +1,11 @@
 import { IFetchRatesRequest, INotificationState } from "@domain";
 import { EActionTypes } from "./store.enum";
-import { IAction, IDataStore, ISelectedCurrency } from "./store.interface";
+import {
+  IAction,
+  IAppStore,
+  IDataStore,
+  ISelectedCurrency,
+} from "./store.interface";
 
 export const ActionCreators = {
   [EActionTypes.showCurrencySelector](): IAction {
@@ -30,6 +35,18 @@ export const ActionCreators = {
     };
   },
 
+  [EActionTypes.setAmountInvalid](): IAction {
+    return {
+      type: EActionTypes.setAmountInvalid,
+    };
+  },
+
+  [EActionTypes.setAmountValid](): IAction {
+    return {
+      type: EActionTypes.setAmountValid,
+    };
+  },
+
   [EActionTypes.saveSelectedCurrency](
     payload: ISelectedCurrency
   ): IAction<ISelectedCurrency> {
@@ -39,8 +56,9 @@ export const ActionCreators = {
     };
   },
 
-  [EActionTypes.saveAmount](payload: any): IAction {
-    // TODO types
+  [EActionTypes.saveAmount](
+    payload: IAppStore["amount"]
+  ): IAction<IAppStore["amount"]> {
     return {
       type: EActionTypes.saveAmount,
       payload,

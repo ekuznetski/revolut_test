@@ -9,6 +9,7 @@ export const initAppStore: Nullable<IAppStore> = {
     [EAmountInputType.base]: null,
     [EAmountInputType.quote]: null,
   },
+  isAmountInvalid: false,
   selectedCurrency: {
     base: null,
     quote: null,
@@ -71,6 +72,16 @@ export function appStoreReducer(
           state.exchangeType === EExchangeType.sell
             ? EExchangeType.buy
             : EExchangeType.sell,
+      };
+    case EActionTypes.setAmountInvalid:
+      return {
+        ...state,
+        isAmountInvalid: true,
+      };
+    case EActionTypes.setAmountValid:
+      return {
+        ...state,
+        isAmountInvalid: false,
       };
     default:
       return state;
