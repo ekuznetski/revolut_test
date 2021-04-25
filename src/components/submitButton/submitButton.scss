@@ -1,0 +1,21 @@
+.submit-button {
+  border: none;
+  box-shadow: 0 8px 20px 0 rgb(38 103 255 / 50%);
+  background-color: #2667ff;
+  margin-top: 20px;
+  border-radius: 4px;
+  color: #fcfffb;
+  padding: 10px 45px;
+  transition: box-shadow 0.2s, background-color 0.2s;
+  &:hover {
+    box-shadow: 0 4px 10px 0 rgb(38 103 255 / 50%);
+  }
+  &:focus {
+    box-shadow: 0 2px 5px 0 rgb(38 103 255 / 50%);
+  }
+  &:disabled {
+    background-color: #cacfd5;
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+}

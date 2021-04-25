@@ -9,6 +9,7 @@ import {
 import { ActionCreators, EActionTypes } from "@store";
 import { EAmountInputType } from "@components";
 import { ISubmitRequest } from "@domain";
+import "./submitButton.scss";
 
 export function SubmitButton() {
   const dispatch = useDispatch();
@@ -56,7 +57,12 @@ export function SubmitButton() {
   }
 
   return (
-    <button type="submit" onClick={onClickHandler} disabled={isDisabled}>
+    <button
+      className="submit-button"
+      type="submit"
+      onClick={onClickHandler}
+      disabled={isDisabled}
+    >
       {isSellExchangeType ? "Sell" : "Buy"} {selectedCurrency.base}{" "}
       {isSellExchangeType ? "for" : "with"} {selectedCurrency.quote}
     </button>

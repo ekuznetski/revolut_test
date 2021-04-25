@@ -27,11 +27,17 @@ dd {
 }
 
 body {
-  min-height: 100vh;
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   font-family: "Poppins", sans-serif;
+  background-color: #fdfffc;
+  color: #021527;
+  max-width: 320px;
+}
+
+#root {
+  margin: 10px;
 }
 
 ul[class],
