@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { IAppStore, IStore } from "@store";
+import { useDispatch, useSelector } from "react-redux";
+import { ActionCreators, EActionTypes, IAppStore, IStore } from "@store";
 import "./notifications.scss";
 
 export function Notifications() {
-   const { notification } = useSelector<
+  const dispatch = useDispatch();
+  const defaultTimeout = 2000;
+  const { notification } = useSelector<
     IStore,
     {
       notification: IAppStore["notification"];
@@ -13,7 +15,14 @@ export function Notifications() {
     notification: state.app.notification,
   }));
 
-
+  useEffect(() => {
+    if (notification.isVisible) {
+      setTimeout(
+        () => dispatch(ActionCreators[EActionTypes.hideNotification]()),
+        notification.timeout ? notification.timeout : defaultTimeout
+      );
+    }
+  }, [notification.isVisible]);
 
   return notification.isVisible ? (
     <div className="notification-wrapper">{notification.message}</div>
