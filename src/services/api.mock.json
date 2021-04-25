@@ -2,9 +2,11 @@
  "availableBalance": {
     "status": "success",
     "response": {
-        "GBP": 20.00,
-        "USD": 50.00,
-        "EUR": 100.00
+        "GBP": 20,
+        "USD": 50,
+        "EUR": 100,
+        "JPY": 0,
+        "CZK": 0
    }
  },
  "submit": {
