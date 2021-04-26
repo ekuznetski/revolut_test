@@ -57,7 +57,7 @@ export function AmountInput({ type }: { type: EAmountInputType }) {
     const { value } = e.target;
     if ((pattern.test(value) && parseFloat(value) >= 0) || value === "") {
       const selectedCurrTemp = selectedCurrency[type] as ECurrency;
-      const selectedCurrPrices = rates[selectedCurrTemp].prices;
+      const selectedCurrPrices = rates[selectedCurrTemp];
 
       const anotherSelectedCurrency = selectedCurrency[
         anotherType

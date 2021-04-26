@@ -8,10 +8,7 @@ export interface ISelectedCurrency {
 }
 
 export type IRates = {
-  [k in ECurrency]: {
-    prices: { [j in ECurrency]: number };
-    timestamp: number;
-  };
+  [k in ECurrency]: { [j in ECurrency]: number };
 };
 
 export interface IDataStore {

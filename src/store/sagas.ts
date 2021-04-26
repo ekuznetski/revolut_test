@@ -12,10 +12,7 @@ function* fetchRatesMiddleware({ payload }: IAction) {
       payload
     );
     const preparedRates = {
-      [base]: {
-        timestamp: new Date().getTime(),
-        prices: rates,
-      },
+      [base]: rates,
     };
     yield put(ActionCreators[EActionTypes.saveRates](preparedRates as IRates));
   } catch (e) {

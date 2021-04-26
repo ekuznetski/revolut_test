@@ -15,9 +15,7 @@ export function Header() {
       {rates[selectedCurrency.base] && (
         <div className="market-order">
           Market order: {selectedCurrency.base} 1 = {selectedCurrency.quote}{" "}
-          {rates[selectedCurrency.base].prices[selectedCurrency.quote].toFixed(
-            6
-          )}
+          {rates[selectedCurrency.base][selectedCurrency.quote].toFixed(6)}
         </div>
       )}
     </div>
