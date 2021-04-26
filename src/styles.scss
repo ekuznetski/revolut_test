@@ -68,6 +68,18 @@ button {
   cursor: pointer;
 }
 
+@media (max-width: 480px) {
+  body {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  #root {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
