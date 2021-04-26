@@ -53,13 +53,12 @@ function* submitExchangeMiddleware(action: IAction) {
       action.payload
     );
     if (status === EResponseStatus.success) {
-      console.log("success submit");
       yield put(ActionCreators[EActionTypes.fetchAvailableBalance]());
     }
     yield put(
       ActionCreators[EActionTypes.showNotification]({
         type: ENotificationType.success,
-        message: "success",
+        message: "Exchange success",
       })
     );
   } catch (e) {
