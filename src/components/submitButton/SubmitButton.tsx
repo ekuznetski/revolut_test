@@ -14,7 +14,10 @@ import "./submitButton.scss";
 export function SubmitButton() {
   const dispatch = useDispatch();
   const [isDisabled, setIsDisabled] = useState(true);
-  const isAmountInvalid = useIsAmountInvalid();
+  const {
+    [EAmountInputType.base]: invalidBase,
+    [EAmountInputType.quote]: invalidQuote,
+  } = useIsAmountInvalid();
   const selectedCurrency = useSelectedCurrency();
   const {
     [EAmountInputType.base]: amountBase,
@@ -23,8 +26,10 @@ export function SubmitButton() {
   const { isSellExchangeType } = useExchangeType();
 
   useEffect(() => {
-    setIsDisabled(!(!!amountBase && !!amountQuote && !isAmountInvalid));
-  }, [amountBase, amountQuote, isAmountInvalid]);
+    setIsDisabled(
+      !(!!amountBase && !!amountQuote && !invalidBase && !invalidQuote)
+    );
+  }, [amountBase, amountQuote, invalidBase, invalidQuote]);
 
   function onClickHandler(e: FormEvent<HTMLButtonElement>) {
     e.preventDefault();

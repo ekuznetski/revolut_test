@@ -7,6 +7,7 @@
   color: #fcfffb;
   padding: 10px 45px;
   transition: box-shadow 0.2s, background-color 0.2s;
+  user-select: none;
   &:hover {
     box-shadow: 0 4px 10px 0 rgb(38 103 255 / 50%);
   }
