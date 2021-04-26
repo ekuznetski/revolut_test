@@ -18,7 +18,7 @@
       "@components": ["components"],
       "@domain": ["domain"],
       "@store": ["store"],
-      "@hooks": ["hooks"],
+      "@hooks": ["hooks"]
     }
   },
   "include": ["*.tsx", "src/**/*.tsx", "**/*.js", "**/*.ts", ".eslintrc.js"],
