@@ -1,13 +1,14 @@
-.change-direction-button{
+.change-direction-button {
   border-radius: 50%;
-  border: 1px solid black;
+  border: 1px solid #cacfd5;
   display: flex;
   justify-content: center;
   width: 25px;
   height: 25px;
   cursor: pointer;
   user-select: none;
-  &.buy{
+  margin: 10px auto;
+  &.buy {
     transform: rotate(180deg);
   }
 }
