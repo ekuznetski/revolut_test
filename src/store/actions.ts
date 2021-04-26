@@ -43,15 +43,21 @@ export const ActionCreators = {
     };
   },
 
-  [EActionTypes.setAmountInvalid](): IAction {
+  [EActionTypes.setAmountInvalid](
+    payload: EAmountInputType
+  ): IAction<EAmountInputType> {
     return {
       type: EActionTypes.setAmountInvalid,
+      payload,
     };
   },
 
-  [EActionTypes.setAmountValid](): IAction {
+  [EActionTypes.setAmountValid](
+    payload: EAmountInputType
+  ): IAction<EAmountInputType> {
     return {
       type: EActionTypes.setAmountValid,
+      payload,
     };
   },
 

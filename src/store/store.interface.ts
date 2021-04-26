@@ -28,7 +28,10 @@ export interface IAppStore {
     [EAmountInputType.base]: string;
     [EAmountInputType.quote]: string;
   };
-  isAmountInvalid: boolean;
+  isAmountInvalid: {
+    [EAmountInputType.base]: boolean;
+    [EAmountInputType.quote]: boolean;
+  };
   selectedCurrency: ISelectedCurrency;
   notification: INotificationState;
   exchangeType: EExchangeType;

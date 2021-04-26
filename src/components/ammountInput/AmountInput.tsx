@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { ActionCreators, EActionTypes, IAppStore } from "@store";
+import { ActionCreators, EActionTypes, EExchangeType, IAppStore } from "@store";
 import { ECurrency, ECurrencySymbol } from "@domain";
 import {
   useAmount,
@@ -24,7 +24,7 @@ export function AmountInput({ type }: { type: EAmountInputType }) {
   const isAmountInvalid = useIsAmountInvalid();
   const amount = useAmount();
   const rates = useRates();
-  const { isSellExchangeType } = useExchangeType();
+  const { isSellExchangeType, exchangeType } = useExchangeType();
   const pattern = /^\d+([.]?\d){0,2}$/;
   const anotherType =
     type === EAmountInputType.base
@@ -35,11 +35,29 @@ export function AmountInput({ type }: { type: EAmountInputType }) {
     dispatch(ActionCreators[EActionTypes.showCurrencySelector](type));
   }
 
+  function validate(value: number, selectedCur: ECurrency) {
+    const validatable =
+      (type === EAmountInputType.quote && exchangeType === EExchangeType.buy) ||
+      (type === EAmountInputType.base && exchangeType === EExchangeType.sell);
+    const isInvalid = validatable && value >= availableBalance[selectedCur];
+    dispatch(
+      ActionCreators[
+        isInvalid ? EActionTypes.setAmountInvalid : EActionTypes.setAmountValid
+      ](type)
+    );
+  }
+
+  useEffect(() => {
+    if (amount[type] && !!selectedCurrency[type]) {
+      validate(parseFloat(amount[type]), selectedCurrency[type] as ECurrency);
+    }
+  }, [exchangeType, amount[type]]);
+
   function onChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
     const { value } = e.target;
     if ((pattern.test(value) && parseFloat(value) >= 0) || value === "") {
-      const selectedCur = selectedCurrency[type] as ECurrency;
-      const selectedCurrPrices = rates[selectedCur].prices;
+      const selectedCurrTemp = selectedCurrency[type] as ECurrency;
+      const selectedCurrPrices = rates[selectedCurrTemp].prices;
 
       const anotherSelectedCurrency = selectedCurrency[
         anotherType
@@ -54,16 +72,7 @@ export function AmountInput({ type }: { type: EAmountInputType }) {
         [anotherType]: anotherAmount ? anotherAmount.toFixed(2) : "",
       } as IAppStore["amount"];
 
-      const isInvalid = parseFloat(value) >= availableBalance[selectedCur];
-
       dispatch(ActionCreators[EActionTypes.saveAmount](newAmount));
-      dispatch(
-        ActionCreators[
-          isInvalid
-            ? EActionTypes.setAmountInvalid
-            : EActionTypes.setAmountValid
-        ]()
-      );
     }
   }
 
@@ -93,7 +102,11 @@ export function AmountInput({ type }: { type: EAmountInputType }) {
   }
 
   return (
-    <div className={`amount-input-wrapper ${isAmountInvalid ? "invalid" : ""}`}>
+    <div
+      className={`amount-input-wrapper ${
+        isAmountInvalid[type] ? "invalid" : ""
+      }`}
+    >
       <div className="amount-input-data">
         <button
           type="button"
@@ -118,6 +131,7 @@ export function AmountInput({ type }: { type: EAmountInputType }) {
           </div>
         )}
         <input
+          placeholder="0"
           name={type}
           inputMode="numeric"
           pattern={pattern.toString()}
@@ -128,6 +142,7 @@ export function AmountInput({ type }: { type: EAmountInputType }) {
           onKeyDown={onKeyDownHandler}
         />
       </div>
+      <span className="error">exceeds balance</span>
     </div>
   );
 }
