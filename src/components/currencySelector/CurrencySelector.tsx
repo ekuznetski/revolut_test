@@ -27,29 +27,32 @@ export function CurrencySelector() {
     }
   }
 
-  function hideCurrencySelector() {
-    dispatch(ActionCreators[EActionTypes.hideCurrencySelector]());
-  }
-
   function clearInput() {
     setInputState("");
     setSearchResults(Object.values(ECurrency));
   }
 
+  function hideCurrencySelector() {
+    clearInput();
+    dispatch(ActionCreators[EActionTypes.hideCurrencySelector]());
+  }
+
   return currencySelector.isActive ? (
-    <div className="currency-selector-wrapper">
-      <div className="currency-selector-input-wrapper">
-        <div className="currency-selector-input">
-          <input type="text" onChange={onChangeHandler} value={inputState} />
-          <button type="button" className="close" onClick={clearInput}>
-            X
+    <>
+      <div className="overlay" onClick={hideCurrencySelector} />
+      <div className="currency-selector-wrapper">
+        <div className="currency-selector-input-wrapper">
+          <div className="currency-selector-input">
+            <input type="text" onChange={onChangeHandler} value={inputState} />
+            {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
+            <button type="button" className="close" onClick={clearInput} />
+          </div>
+          <button type="button" onClick={hideCurrencySelector}>
+            Cancel
           </button>
         </div>
-        <button type="button" onClick={hideCurrencySelector}>
-          Cancel
-        </button>
+        <CurrenciesList clearInput={clearInput} results={searchResults} />
       </div>
-      <CurrenciesList results={searchResults} />
-    </div>
+    </>
   ) : null;
 }

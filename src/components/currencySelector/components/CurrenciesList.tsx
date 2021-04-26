@@ -1,15 +1,26 @@
 import React from "react";
-import { ECurrency } from "@domain";
+import { ECurrency, ECurrencyName } from "@domain";
 import { useDispatch } from "react-redux";
 import { ActionCreators, EActionTypes } from "@store";
-import { useCurrencySelector, useSelectedCurrency } from "@hooks";
+import {
+  useAvailableBalance,
+  useCurrencySelector,
+  useSelectedCurrency,
+} from "@hooks";
 import { EAmountInputType } from "@components";
 import "./currenciesList.scss";
 
-export function CurrenciesList({ results }: { results: ECurrency[] }) {
+export function CurrenciesList({
+  results,
+  clearInput,
+}: {
+  results: ECurrency[];
+  clearInput: () => void;
+}) {
   const dispatch = useDispatch();
   const currencySelector = useCurrencySelector();
   const selectedCurrency = useSelectedCurrency();
+  const availableBalance = useAvailableBalance();
 
   function selectCurrency(currency: ECurrency) {
     const anotherInputType =
@@ -29,17 +40,16 @@ export function CurrenciesList({ results }: { results: ECurrency[] }) {
           [currencySelector.relatedInputType as string]: currency,
         })
       );
-      console.log(111);
     } else {
       dispatch(
         ActionCreators[EActionTypes.saveSelectedCurrency]({
           [currencySelector.relatedInputType as string]: currency,
         })
       );
-      console.log(222);
     }
 
     dispatch(ActionCreators[EActionTypes.hideCurrencySelector]());
+    clearInput();
   }
 
   return (
@@ -47,7 +57,16 @@ export function CurrenciesList({ results }: { results: ECurrency[] }) {
       {results.map((e: ECurrency) => (
         <li key={e} className="results-element">
           <button type="button" onClick={() => selectCurrency(e)}>
-            {e}
+            <div>
+              <span className="currency">{e}</span>
+              {availableBalance[e] !== 0 && (
+                <span className="balance">
+                  {" "}
+                  - {availableBalance[e].toFixed(2)}
+                </span>
+              )}
+              <div className="currency-name">{ECurrencyName[e]}</div>
+            </div>
           </button>
         </li>
       ))}

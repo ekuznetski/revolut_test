@@ -1,10 +1,20 @@
 .currencies-list {
   background-color: white;
-  border: 1px solid black;
+  border: 1px solid #cacfd5;
   .results-element {
     cursor: pointer;
+    button {
+      background-color: transparent;
+      border: none;
+      text-align: left;
+      padding: 10px;
+      width: 100%;
+      .currency-name {
+        color: #7d7d7d;
+      }
+    }
     &:hover {
-      background-color: wheat;
+      background-color: #f7f7f7;
     }
   }
 }
