@@ -1,5 +1,6 @@
 import React from "react";
 import { useExchangeType, useRates, useSelectedCurrency } from "@hooks";
+import "./header.scss";
 
 export function Header() {
   const selectedCurrency = useSelectedCurrency();
@@ -7,12 +8,12 @@ export function Header() {
   const { isSellExchangeType } = useExchangeType();
 
   return selectedCurrency.quote && selectedCurrency?.base ? (
-    <div>
-      <div>
+    <div className="header">
+      <div className="title">
         {isSellExchangeType ? "Sell" : "Buy"} {selectedCurrency.base}
       </div>
       {rates[selectedCurrency.base] && (
-        <div>
+        <div className="market-order">
           Market order: {selectedCurrency.base} 1 = {selectedCurrency.quote}{" "}
           {rates[selectedCurrency.base].prices[selectedCurrency.quote].toFixed(
             6
