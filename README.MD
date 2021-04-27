@@ -52,8 +52,8 @@ I think that best option for price feed will be websocket or event sourcing will
 
 ### Components wireframes
 
-main app
+main app  
 ![img.png](img.png)
 
-currencySelector
+currencySelector  
 ![img_1.png](img_1.png)
