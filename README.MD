@@ -1,5 +1,9 @@
 ## REVOLUT exchange app
 
+use `yarn` to install all dependencies  
+use `yarn run start` to run app on localhost:3000 (browser will open automatically)  
+use `yarn run test` to run tests
+
 ### Store
 
 Store have two substores - one for manage app, second for manage data
