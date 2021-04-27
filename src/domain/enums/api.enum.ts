@@ -1,0 +1,11 @@
+export enum EResponseStatus {
+  success = "success",
+  failure = "failure",
+}
+
+export enum EHttpMethod {
+  get = "get",
+  post = "post",
+  put = "put",
+  delete = "delete",
+}

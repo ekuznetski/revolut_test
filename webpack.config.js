@@ -14,6 +14,9 @@ module.exports = {
     extensions: [".tsx", ".ts", ".js", ".json", ".sass", ".scss", ".css"],
     alias: {
       "react-dom": "@hot-loader/react-dom",
+      "@components": path.resolve(__dirname, "src/components"),
+      "@domain/*": path.resolve(__dirname, "src/domain/"),
+      "@store": path.resolve(__dirname, "src/store"),
     },
   },
   devtool: "inline-source-map",
@@ -30,9 +33,6 @@ module.exports = {
             loader: MiniCssExtractPlugin.loader,
           },
           "css-loader",
-          {
-            loader: "postcss-loader",
-          },
           "sass-loader",
         ],
       },

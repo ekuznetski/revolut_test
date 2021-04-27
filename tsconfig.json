@@ -14,7 +14,12 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "jsx": "react",
+    "paths": {
+      "@components": ["components"],
+      "@domain/*": ["domain/*"],
+      "@store": ["store"],
+    }
   },
-  "include": ["*.tsx", "src/**/*.tsx", "*.js", "**/*.ts"],
+  "include": ["*.tsx", "src/**/*.tsx", "**/*.js", "**/*.ts", ".eslintrc.js"],
   "exclude": ["node_modules"]
 }

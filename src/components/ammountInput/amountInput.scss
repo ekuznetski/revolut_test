@@ -1,0 +1,9 @@
+.amount-input-wrapper{
+  display: flex;
+  .amount-input-data{
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    user-select: none;
+  }
+}
