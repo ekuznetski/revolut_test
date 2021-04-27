@@ -14,15 +14,24 @@
   .currency-selector-input-wrapper {
     display: flex;
     align-items: center;
+    .cancel-button {
+      background-color: transparent;
+      border: none;
+      color: white;
+      font-size: 16px;
+      margin: 0 10px;
+    }
     .currency-selector-input {
       position: relative;
       width: 100%;
       input {
         width: 100%;
+        border-radius: 4px;
+        border: none;
       }
       .close {
         right: 5px;
-        top: 7px;
+        top: 6px;
         width: 15px;
         height: 15px;
         display: flex;

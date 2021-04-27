@@ -39,15 +39,25 @@ export function CurrencySelector() {
 
   return currencySelector.isActive ? (
     <>
+      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
       <div className="overlay" onClick={hideCurrencySelector} />
       <div className="currency-selector-wrapper">
         <div className="currency-selector-input-wrapper">
           <div className="currency-selector-input">
-            <input type="text" onChange={onChangeHandler} value={inputState} />
+            <input
+              type="text"
+              onChange={onChangeHandler}
+              value={inputState}
+              placeholder="Search"
+            />
             {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
             <button type="button" className="close" onClick={clearInput} />
           </div>
-          <button type="button" onClick={hideCurrencySelector}>
+          <button
+            type="button"
+            className="cancel-button"
+            onClick={hideCurrencySelector}
+          >
             Cancel
           </button>
         </div>
