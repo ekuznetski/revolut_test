@@ -18,9 +18,10 @@
       "@components": ["components"],
       "@domain": ["domain"],
       "@store": ["store"],
-      "@hooks": ["hooks"]
+      "@hooks": ["hooks"],
+      "@tests": ["tests/test-utils"]
     }
   },
-  "include": ["*.tsx", "src/**/*.tsx", "**/*.js", "**/*.ts", ".eslintrc.js"],
+  "include": ["*.tsx", "src/**/*.tsx", "**/*.js", "**/*.ts", ".eslintrc.js", "/src/tests/jest-setup.ts"],
   "exclude": ["node_modules"]
 }
