@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-module.exports = {
+module.exports = (args) => ({
   entry: {
     presets: ["@babel/polyfill"],
     main: ["react-hot-loader/patch", "./src/index.tsx"],
@@ -21,7 +21,7 @@ module.exports = {
       "@utils": path.resolve(__dirname, "src/utils"),
     },
   },
-  devtool: "inline-source-map",
+  devtool: args.mode === "development" ? "inline-source-map" : "source-map",
   output: {
     path: path.resolve(__dirname, "./dist"),
     filename: "[name].[contenthash].bundle.js",
@@ -84,10 +84,10 @@ module.exports = {
     open: true,
     contentBase: path.join(__dirname, "dist"),
     compress: true,
-    hot: true,
+    hot: args.mode === "development",
     port: 3000,
     watchContentBase: false,
     progress: false,
     clientLogLevel: "warning",
   },
-};
+});
