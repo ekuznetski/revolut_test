@@ -39,7 +39,7 @@ export function AmountInput({ type }: { type: EAmountInputType }) {
     const validatable =
       (type === EAmountInputType.quote && exchangeType === EExchangeType.buy) ||
       (type === EAmountInputType.base && exchangeType === EExchangeType.sell);
-    const isInvalid = validatable && value >= availableBalance[selectedCur];
+    const isInvalid = validatable && value > availableBalance[selectedCur];
     dispatch(
       ActionCreators[
         isInvalid ? EActionTypes.setAmountInvalid : EActionTypes.setAmountValid
@@ -48,7 +48,7 @@ export function AmountInput({ type }: { type: EAmountInputType }) {
   }
 
   useEffect(() => {
-    if (amount[type] && !!selectedCurrency[type]) {
+    if (selectedCurrency[type]) {
       validate(parseFloat(amount[type]), selectedCurrency[type] as ECurrency);
     }
   }, [exchangeType, amount[type]]);
