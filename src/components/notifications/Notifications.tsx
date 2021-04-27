@@ -5,7 +5,7 @@ import "./notifications.scss";
 
 export function Notifications() {
   const dispatch = useDispatch();
-  const defaultTimeout = 2000;
+  const defaultTimeout = 4000;
   const { notification } = useSelector<
     IStore,
     {

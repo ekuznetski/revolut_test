@@ -5,11 +5,12 @@
   border: 1px solid #9ac171;
   padding: 20px;
   width: calc(100% - 40px);
+  max-width: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
   background: #9ac171;
-  margin: 20px;
+  margin: 10px;
   color: white;
   z-index: 1;
   box-shadow: 5px 5px 15px rgb(154 193 113);
