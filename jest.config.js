@@ -8,7 +8,7 @@ const paths = pathsToModuleNameMapper(compilerOptions.paths, {
 module.exports = {
   preset: "ts-jest",
   testEnvironment: "jsdom",
-  setupFilesAfterEnv: ["<rootDir>/src/tests/jest-setup.ts"],
+  setupFilesAfterEnv: ["<rootDir>/src/utils/jest-setup.ts"],
   moduleNameMapper: {
     ".+\\.(css|styl|less|sass|scss)$": `identity-obj-proxy`,
     ...paths,

@@ -111,11 +111,12 @@ export function AmountInput({ type }: { type: EAmountInputType }) {
         <button
           type="button"
           className="currency"
+          aria-label="open-currency-selector"
           onClick={showCurrencySelector}
         >
           {selectedCurrency[type]}
         </button>
-        <div className="balance">
+        <div className="balance" aria-label="available-balance">
           Balance:{" "}
           {(availableBalance[selectedCurrency[type] as ECurrency]
             ? availableBalance[selectedCurrency[type] as ECurrency]
@@ -136,13 +137,18 @@ export function AmountInput({ type }: { type: EAmountInputType }) {
           inputMode="numeric"
           pattern={pattern.toString()}
           type="number"
+          aria-label={`amount-${type}-input`}
           value={amount[type] ?? ""}
           onBlur={onBlurHandler}
           onChange={onChangeHandler}
           onKeyDown={onKeyDownHandler}
         />
       </div>
-      <span className="error">exceeds balance</span>
+      {isAmountInvalid[type] && (
+        <span className="error" aria-label="form-error">
+          exceeds balance
+        </span>
+      )}
     </div>
   );
 }

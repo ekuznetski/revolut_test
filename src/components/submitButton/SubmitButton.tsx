@@ -64,6 +64,7 @@ export function SubmitButton() {
   return (
     <button
       className="submit-button"
+      aria-label="submit-button"
       type="submit"
       onClick={onClickHandler}
       disabled={isDisabled}

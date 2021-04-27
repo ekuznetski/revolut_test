@@ -1,8 +1,8 @@
 import createSagaMiddleware from "redux-saga";
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { Nullable } from "@domain";
 
+import { Nullable } from "@domain";
 import * as sagaMiddlewareRunners from "./sagas";
 import { IStore } from "./store.interface";
 import { appStoreReducer, initAppStore } from "./_app.reducer";

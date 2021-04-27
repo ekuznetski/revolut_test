@@ -7,7 +7,7 @@
     "start": "fkill :3000 -f -s && webpack serve",
     "dev": "fkill :3000 -f -s && webpack serve --hot",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch --coverage"
   },
   "dependencies": {
     "@testing-library/react": "^11.2.6",

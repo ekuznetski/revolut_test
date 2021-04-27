@@ -19,9 +19,9 @@
       "@domain": ["domain"],
       "@store": ["store"],
       "@hooks": ["hooks"],
-      "@tests": ["tests/test-utils"]
+      "@utils": ["utils"]
     }
   },
-  "include": ["*.tsx", "src/**/*.tsx", "**/*.js", "**/*.ts", ".eslintrc.js", "/src/tests/jest-setup.ts"],
+  "include": ["*.tsx", "src/**/*.tsx", "**/*.js", "**/*.ts", ".eslintrc.js", "/src/utils/jest-setup.ts"],
   "exclude": ["node_modules"]
 }

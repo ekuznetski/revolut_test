@@ -8,7 +8,7 @@
     outline: -webkit-focus-ring-color auto 1px;
   }
   .error {
-    display: none;
+    display: block;
     position: absolute;
     bottom: -17px;
     right: 3px;
@@ -17,9 +17,6 @@
   }
   &.invalid {
     border-color: #ee464c;
-    .error {
-      display: flex;
-    }
   }
   input {
     padding: 10px 10px 10px 0;

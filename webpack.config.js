@@ -18,7 +18,7 @@ module.exports = {
       "@domain": path.resolve(__dirname, "src/domain"),
       "@store": path.resolve(__dirname, "src/store"),
       "@hooks": path.resolve(__dirname, "src/hooks"),
-      "@tests": path.resolve(__dirname, "src/tests"),
+      "@utils": path.resolve(__dirname, "src/utils"),
     },
   },
   devtool: "inline-source-map",

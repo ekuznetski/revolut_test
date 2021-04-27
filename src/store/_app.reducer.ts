@@ -1,5 +1,5 @@
-import { Nullable } from "@domain";
 import { EAmountInputType } from "@components";
+import { Nullable } from "@domain";
 import { IAction, IAppStore } from "./store.interface";
 import { EActionTypes, EExchangeType } from "./store.enum";
 
@@ -9,12 +9,12 @@ export const initAppStore: Nullable<IAppStore> = {
     relatedInputType: null,
   },
   amount: {
-    [EAmountInputType.base]: "",
-    [EAmountInputType.quote]: "",
+    base: "",
+    quote: "",
   },
   isAmountInvalid: {
-    [EAmountInputType.base]: false,
-    [EAmountInputType.quote]: false,
+    base: false,
+    quote: false,
   },
   selectedCurrency: {
     base: null,
