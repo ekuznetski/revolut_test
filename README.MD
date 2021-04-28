@@ -3,7 +3,7 @@
 use `yarn` to install all dependencies  
 use `yarn run start` to run app on localhost:3000 (browser will open automatically)  
 use `yarn run test` to run tests
-
+___
 ### Store
 
 Store have two substores - one for manage app, second for manage data
@@ -41,7 +41,7 @@ selectedCurrency|
 notification|
 exchangeType|
 
-
+___
 ### Requests
 
 For feed of rates I use api.ratesapi.io
@@ -51,8 +51,8 @@ other requests is mocked
 2. **GET** - fetch fx rates (on app start, with interval 10min)  
 3. **POST** - exchange submit
 
-I think that best option for price feed will be websocket or event sourcing will respond all available rates.
-
+I think that the best option for price feed will be websocket or event sourcing, which will respond to all available rates.
+___
 
 ### Components wireframes
 
