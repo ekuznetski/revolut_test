@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "fkill :3000 -f -s && webpack serve --mode=production",
-    "dev": "fkill :3000 -f -s && webpack serve",
+    "dev": "fkill :3000 -f -s && webpack serve --hot",
     "test": "jest",
     "test:watch": "jest --watch --coverage"
   },
