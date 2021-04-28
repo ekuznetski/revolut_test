@@ -52,7 +52,7 @@ describe("AmountInput validation and calculation test", () => {
       expect(mockStore.app?.isAmountInvalid).toBeTruthy();
     });
 
-    it("should 1111", () => {
+    it("should correct calculate quote amount", () => {
       const value = amountInput
         .getByLabelText(`amount-${type}-input`, {
           selector: "input",
